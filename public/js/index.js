@@ -64,7 +64,8 @@ document.getElementById("input-search").addEventListener("keyup",async e => {
 })
 
 document.getElementById("btn-more").addEventListener("click", () => {
-  document.getElementById("btn-more").style.display = "none"
+  document.getElementById("btn-more").disabled = true;
+  document.getElementById("btn-more").style.background = "#aaa"
   limit += limitPlus
   getJobs()
 })
@@ -90,6 +91,8 @@ async function getJobs() {
     document.getElementById("btn-more").style.display = "none"
   } else {
     document.getElementById("btn-more").style.display = "block"
+    document.getElementById("btn-more").style.background = "#2b22c1"
+    document.getElementById("btn-more").disabled = false;
   }
 }
 
@@ -114,6 +117,8 @@ async function getJobsFromCategory(cat) {
     document.getElementById("btn-more").style.display = "none"
   } else {
     document.getElementById("btn-more").style.display = "block"
+    document.getElementById("btn-more").style.background = "#2b22c1"
+    document.getElementById("btn-more").disabled = false;
   }
 }
 

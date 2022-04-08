@@ -1,5 +1,6 @@
 const express = require("express")
 const Datastore = require("nedb")
+const cors = require("cors")
 
 const app = express()
 const collections = {
