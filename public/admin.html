@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+</head>
+<body>
+  <script>
+    addJob()
+
+    async function addJob() {
+      const data = {
+        title: "Este é o outro quinto título",
+        category: "0",
+        expirityDate: "03-05-2022",
+        link: "http://emprego.co.mz/x66",
+        removed: false
+      }
+
+      const res = await fetch("/addjob", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+
+      const json = await res.json()
+      console.log(json)
+    }
+  </script>
+</body>
+</html>

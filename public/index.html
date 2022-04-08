@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2b22c1" />
+  <title>Emprego hoje</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <header>
+    <div id="header">
+      <div id="header-left">
+        <p><i class="la la-2x la-bars"></i></p>
+        <select id="select-category">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div id="header-right">
+        <input type="search" id="input-search" placeholder="">
+      </div>
+    </div>
+    <div id="header-o">
+      <div class="logo">
+        <p class="logo-title">empregohoje</p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <article>
+      <div id="jobs"></div>
+
+      <button id="btn-more"><span>Mais</span><i class="la la-angle-down"></i></button>
+    </article>
+  </main>
+
+  <script src="js/CONFIG.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

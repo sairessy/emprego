@@ -1,0 +1,15 @@
+{
+  "name": "eh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Victorino, Sairesse <sairessy@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nedb": "^1.8.0"
+  }
+}
