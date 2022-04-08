@@ -44,7 +44,6 @@ document.getElementById("input-search").addEventListener("keyup",async e => {
   }
 
   document.getElementById("btn-more").style.display = "none"
-
   let jobs = ""
   const res = await fetch(`/jobs/search/${text}/page/${limit}`)
   const json = await res.json()
@@ -65,6 +64,7 @@ document.getElementById("input-search").addEventListener("keyup",async e => {
 })
 
 document.getElementById("btn-more").addEventListener("click", () => {
+  document.getElementById("btn-more").style.display = "none"
   limit += limitPlus
   getJobs()
 })

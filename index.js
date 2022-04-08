@@ -2,7 +2,6 @@ const express = require("express")
 const Datastore = require("nedb")
 
 const app = express()
-
 const collections = {
   jobs: new Datastore("./src/collections/jobs.db")
 }
@@ -11,6 +10,9 @@ collections.jobs.loadDatabase()
 
 app.use(express.static("public"))
 app.use(express.json({limit: "1mb"}))
+app.use(cors({
+  origin: "*"
+}))
 
 const PORT = 3000 || process.env.PORT
 

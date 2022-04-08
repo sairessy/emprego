@@ -12,14 +12,14 @@
 
     async function addJob() {
       const data = {
-        title: "Este é o outro quinto título",
+        title: "Este é o outro setimo título",
         category: "0",
         expirityDate: "03-05-2022",
         link: "http://emprego.co.mz/x66",
         removed: false
       }
 
-      const res = await fetch("/addjob", {
+      const res = await fetch("https://empregohoje.glitch.me/addjob", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
