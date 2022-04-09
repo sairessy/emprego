@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emprego hoje</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/main.css">
+  <style>
+    main {
+      height: calc(100vh - 30px);
+      display: flex;
+      align-items: center;
+    }
+
+    button {
+      display: block; 
+      width: calc(100% - 10px);
+      padding: 15px;
+      margin: 15px auto;
+      border-radius: 5px;
+      background-color: #ddd;
+      color: #fff;
+      border: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #aaa;
+      box-shadow: 0 0 2px #ccc;
+      font-size: 14px;
+    }
+
+    button span {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <button id="btn-link" disabled>
+      <i class="la la-spin la-lg la-circle-notch"></i>
+      <span>Abrir link</span>
+    </button>
+  </main>
+
+  <script>
+    let _link
+    getLink()
+
+    async function getLink() {
+      const sp = window.location.href.split("/")
+      const id = sp[sp.length - 1]
+      const res = await fetch("/job/" + id)
+      const json = await res.json()
+ 
+      const link = json.link
+      _link = link
+      document.getElementById("btn-link").disabled = false
+      document.getElementById("btn-link").style.backgroundColor = "#2b22c1"
+      document.querySelector("#btn-link i").style.display = "none"
+    }
+
+    document.getElementById("btn-link").addEventListener("click", e => {
+      console.log(e.target.disabled)
+      const disabled = e.target.disabled
+      if(!disabled) {
+        window.location.href = _link
+      }
+    })
+  </script>
+</body>
+</html>

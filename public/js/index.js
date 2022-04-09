@@ -2,7 +2,7 @@ let limit = 1
 const limitPlus = 1
 
 function copyText(id, link, title) {
-  const _link = CONFIG.server + "/" + id;
+  const _link = CONFIG.server + "/page/link/" + id;
   console.log(_link)
   navigator.clipboard.writeText(`Vaga de emprego (${title}). Acesse o link: ${_link}`)
   alert("Link copiado para área de colagem, para compartilhamento!")

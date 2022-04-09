@@ -21,6 +21,13 @@ app.listen(PORT, () => {
   console.log("Server On!!!")
 })
 
+// Pages
+app.get("/page/link/:id", (req, res) => {
+  res.sendFile(__dirname + "/public/link.html")
+})
+
+
+// Api
 app.post("/addjob", (req, res) => {
   const data = req.body
   const job = {
@@ -69,6 +76,6 @@ app.get("/update", (req, res) => {
 app.get("/job/:id", (req, res) => {
   collections.jobs.findOne({_id: req.params.id}, (err, job) => {
     const link = job.link;
-    res.redirect(link)
+    res.json({link})
   })
 })
