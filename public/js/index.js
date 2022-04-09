@@ -1,21 +1,23 @@
 let limit = 1
 const limitPlus = 1
 
-function copyText(link, title) {
-  navigator.clipboard.writeText(`Vaga de emprego (${title}). Acesse o link: ${link}`)
+function copyText(id, link, title) {
+  const _link = CONFIG.server + "/" + id;
+  console.log(_link)
+  navigator.clipboard.writeText(`Vaga de emprego (${title}). Acesse o link: ${_link}`)
   alert("Link copiado para área de colagem, para compartilhamento!")
 }
 
-const Job = (title, category, expirity, link) => {
+const Job = (id, title, category, expirity, link) => {
   return (`
     <div class="job">
       <div class="job-left">
         <a target="_blank" href="${link}" class="job-title">${title}</a>
         <p class="job-category">${category}</p>
-        <p class="job-expirity-date">Expira: ${expirity}</p>
+        <p class="job-expirity-date"><b>Expira:</b> ${expirity}</p>
       </div>
       <div class="job-right">
-        <i onClick="copyText('${link}', '${title}')" class="la la-lg la-copy"></i>
+        <i onClick="copyText('${id}', '${link}', '${title}')" class="la la-lg la-copy"></i>
       </div>
     </div>
   `)
@@ -52,6 +54,7 @@ document.getElementById("input-search").addEventListener("keyup",async e => {
   if(data.length > 0) {
     data.forEach(job => {
       jobs += Job(
+        job._id,
         job.title,
         CONFIG.categories.filter(c => c.id == job.category)[0].label,
         job.expirityDate,
@@ -67,7 +70,14 @@ document.getElementById("btn-more").addEventListener("click", () => {
   document.getElementById("btn-more").disabled = true;
   document.getElementById("btn-more").style.background = "#aaa"
   limit += limitPlus
-  getJobs()
+
+  const c = document.getElementById("select-category").value
+  if(c == "") {
+    getJobs()
+  } else {
+    getJobsFromCategory(c)
+  }
+    
 })
 
 async function getJobs() {
@@ -78,6 +88,7 @@ async function getJobs() {
 
   data.forEach(job => {
     jobs += Job(
+      job._id,
       job.title,
       CONFIG.categories.filter(c => c.id == job.category)[0].label,
       job.expirityDate,
@@ -104,13 +115,14 @@ async function getJobsFromCategory(cat) {
 
   data.forEach(job => {
     jobs += Job(
+      job._id,
       job.title,
       CONFIG.categories.filter(c => c.id == job.category)[0].label,
       job.expirityDate,
       job.link
     )
   })
-
+  
   document.getElementById("jobs").innerHTML = jobs
 
   if(json.reached) {
@@ -137,4 +149,21 @@ document.getElementById("input-search").addEventListener("focus", () => {
 
 document.getElementById("input-search").addEventListener("blur", () => {
   document.getElementById("input-search").setAttribute("placeholder", "")
+})
+
+$("#btn-menu").click(() => {
+  $("#slider-container").fadeIn(() => {
+    $("#slider").animate({left: "0"})
+  })
+
+  $("body").css("overflow-y", "hidden")
+})
+  
+document.getElementById("slider-container").addEventListener("click", e => {
+  if(e.target.id == "slider-container") {
+    $("#slider").animate({left: "-85%"}, () => {
+      $("#slider-container").fadeOut()
+    })
+    $("body").css("overflow-y", "scroll")
+  }
 })

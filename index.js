@@ -10,7 +10,7 @@ const collections = {
 collections.jobs.loadDatabase()
 
 app.use(express.static("public"))
-app.use(express.json({limit: "1mb"}))
+app.use(express.json({limit: "2mb"}))
 app.use(cors({
   origin: "*"
 }))
@@ -29,7 +29,6 @@ app.post("/addjob", (req, res) => {
   }
 
   collections.jobs.insert(job, (err, doc) => {
-    console.log(doc)
     res.json({})
   })
 })
@@ -46,7 +45,6 @@ app.get("/jobs/page/:limit", (req, res) => {
 app.get("/jobs/category/:cat/page/:limit", (req, res) => {
   const cat = req.params.cat
   const limit = req.params.limit
-  console.log(limit, cat)
   collections.jobs.find({category: cat}).limit(limit).exec((err, data) => {
     collections.jobs.count({category: cat}, (errr, count) => {
       res.json({data, reached: count <= data.length})
@@ -66,4 +64,11 @@ app.get("/jobs/search/:text/page/:limit", (req, res) => {
 app.get("/update", (req, res) => {
   collections.jobs.update({}, {$set: {removed: false} }, {multi: true}, (err, numReplaced) => {})
   res.json({})
+})
+
+app.get("/job/:id", (req, res) => {
+  collections.jobs.findOne({_id: req.params.id}, (err, job) => {
+    const link = job.link;
+    res.redirect(link)
+  })
 })

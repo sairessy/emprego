@@ -1,7 +1,8 @@
 header {
   height: 150px;
-  background: url(../assets/img/subtle-prism.svg);
+  background: url(../assets/img/subtle-prism.svg) no-repeat center center/cover;
   background-color: #eee;
+  border-bottom: 1px solid #ddd;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -17,6 +18,23 @@ header {
   align-items: center;
 }
 
+#btn-menu {
+  height: 35px;
+  width: 35px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btn-menu:active {
+  opacity: .8;
+}
+
+#btn-menu i {
+  font-size: 28px;
+}
+
 #select-category {
   margin-left: 10px;
   padding: 8px;
@@ -24,7 +42,7 @@ header {
   width: 100px;
   font-size: 16px;
   height: 35px;
-  background-color: #fcfcfc;
+  background-color: #ddd;
 }
 
 #input-search {
@@ -32,10 +50,11 @@ header {
   padding: 8px;
   height: 35px;
   width: 35px;
-  border-radius: 100%;
+  border-radius: 2px;
   margin-left: 10px;
   background: url(../assets/img/icons8-search-48.svg) no-repeat center center/20px;
-  background-color: #fff;
+  background-color: none;
+  border-bottom: 1px solid transparent;
   font-size: 16px;
 }
 
@@ -43,7 +62,9 @@ header {
   border-radius: 5px;
   width: 100%;
   padding-left: 30px;
-  background-position-x: 7px;
+  background-position-x: 5px;
+  border-bottom-color: #ccc;
+  background-color: #fff;
 }
 
 #header-o {
@@ -55,6 +76,8 @@ header {
 #header-o .logo .logo-title {
   font-size: 32px;
   font-family: Rubik;
+  text-transform: uppercase;
+  color: #666;
 }
 
 article {
@@ -71,6 +94,7 @@ article {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 0 1px #ddd;
 }
 
 .job-right {
@@ -87,6 +111,7 @@ article {
 
 .job-title {
   font-family: "Roboto Condensed";
+  font-size: 18px; 
 }
 
 .job-category {
@@ -104,7 +129,7 @@ article {
 #btn-more {
   display: block;
   margin: 20px auto;
-  width: 90%;
+  width: calc(100% - 20px);
   padding: 15px;
   border-radius: 5px;
   background-color: #2b22c1;
@@ -114,6 +139,9 @@ article {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 0 0 2px #ccc;
+  font-size: 14px;
 }
 
 #btn-more span {
@@ -122,6 +150,40 @@ article {
 
 #btn-more:active {
   opacity: .8;
+}
+
+#btn-more i {
+  animation: anm 3s 1s infinite;
+}
+
+@keyframes anm {
+  0%{transform: translateY(0);}
+  50%{transform: translateY(5px)}
+  75%{transform: translateY(-2px)}
+  100%{transform: translateY(0)}
+}
+
+
+/* Slider */
+
+#slider-container {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.526);
+  z-index: 3;
+  display: none;
+  overflow: hidden;
+}
+
+#slider {
+  position: absolute;
+  width: 85%;
+  left: -85%;
+  background-color: #fff;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 @media screen and (min-width: 414px) {
